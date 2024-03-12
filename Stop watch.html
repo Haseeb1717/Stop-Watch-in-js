@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Stop Watch</title>
+<style type="text/css">
+
+  body {
+    background: linear-gradient(45deg, #d2001a, #7462ff);
+  }
+
+  h1 {
+    margin-left: 400px;
+  }
+
+  .stopwatch {
+    border: 10px solid black;
+    border-radius: 100px;
+    margin-left: 600px;
+    margin-top: 50px;
+    width: 600px;
+    height: 300px;
+     backdrop-filter: blur(45px);
+  }
+
+  p {
+    margin-top: 80px;
+  }
+
+  #seconds {
+    color: #fff;
+    margin-left: 130px;
+    font-size: 100px;
+  }
+
+  #tens {
+    color: #fff;
+    margin-left: 30px;
+    font-size: 100px;
+  }
+
+ #Start{
+ 	color: #fff;
+ 	width: 150px;
+ 	height: 50px;
+ 	margin-left: 20px;
+ 	background-color: green;
+ 	cursor: pointer;
+ }
+  #Stop {
+    color: #fff;
+    width: 150px;
+    height: 50px;
+    margin-left:50px ;
+    background-color: red;
+  }
+#restart{
+	color: #fff;
+width: 150px;
+height: 50px;
+margin-left: 50px;
+background-color: purple;
+}
+
+</style>
+
+</head>
+<body>
+<h1>STOP WATCH</h1>
+<div class="stopwatch">
+<p><span id=seconds>00 :</span>
+	<span id="tens">00</span>
+
+</p>
+<button id="Start">Start</button>
+<button id="Stop">Stop</button>
+<button id="restart">Restart</button>
+</div>
+</body>
+<script type="text/javascript">
+	//dom manipulation 
+const secondsDisplay = document.getElementById('seconds');
+  const tensDisplay = document.getElementById('tens');
+  const startButton = document.getElementById('Start'); 
+  const stopButton = document.getElementById('Stop');
+  const restartButton = document.getElementById('restart'); 
+  let tens = 0;
+  let seconds = 0;
+  let interval;
+
+  function startTimer() {
+    clearInterval(interval);
+    interval = setInterval(updateTimer, 10);
+  }
+
+  function stopTimer() {
+    clearInterval(interval);
+  }
+
+  function updateTimer() {
+    tens++;
+    if (tens > 99) {
+      tens = 0;
+      seconds++;
+    }
+
+    tensDisplay.textContent = tens < 10 ? '0' + tens : tens;
+    secondsDisplay.textContent = seconds < 10 ? '0' + seconds : seconds;
+  }
+
+  function restartTimer() {
+    clearInterval(interval);
+    tens = 0;
+    seconds = 0;
+    tensDisplay.textContent = '00';
+    secondsDisplay.textContent = '00';
+  }
+
+  startButton.addEventListener('click', startTimer);
+  stopButton.addEventListener('click', stopTimer);
+  restartButton.addEventListener('click', restartTimer);
+</script>
+</body>
+</html>
